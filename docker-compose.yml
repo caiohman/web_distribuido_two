@@ -1,0 +1,27 @@
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: caio
+      POSTGRES_DB: database
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend-node
+      dockerfile: Dockerfile
+
+    ports:
+      - "8090:8090"  
+
+  frontend:
+    build:
+      context: ./frontend-vue/
+      dockerfile: Dockerfile
+
+    ports:
+      - "8080:8080"
