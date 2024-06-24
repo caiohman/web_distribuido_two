@@ -3,7 +3,8 @@
     "register": "Register",
     "login": "Login",
     "username": "Username",
-    "password": "Password"
+    "password": "Password",
+    "wrongCredentials": "Username or Password incorrect."
   },
   "navbar": {
     "country": "USA"

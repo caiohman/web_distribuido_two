@@ -3,7 +3,8 @@
     "register": "Cadastro",
     "login": "Entrar",
     "username": "Usuário",
-    "password": "Senha"
+    "password": "Senha",
+    "wrongCredentials": "Usuário e/ou senha incorreto(s)."
    },
   "navbar": {
     "country": "Brasil"

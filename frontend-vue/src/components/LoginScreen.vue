@@ -18,6 +18,7 @@
         <FloatLabel>
           <Password v-model="passwordValue" inputId="password" :feedback="false"/>
           <label for="password">{{ t("login.password") }}</label>
+          <small style="color: red">{{  t("login.wrongCredentials") }}</small>
         </FloatLabel>
       </template>
       <template #footer>
@@ -69,6 +70,8 @@
         return {
           cardImage : logo,
           //registerLabel: this.$t("login.register")
+          userData: null,
+          userPasswordWrong : false
         }
     },
 
@@ -80,10 +83,18 @@
           body: JSON.stringify({ username:this.usernameValue, password:this.passwordValue}), 
         })
        .then(response => response.json())
-       .then(json => console.log(json))
-       .catch(error => console.log(error))    
+       .then(json => this.getUserInformations(json))
+       .catch(error => this.getUserError(error))    
+      },
+
+      getUserInformations(json) {
+        (json.length !== 0) ? this.userData = json[0] : this.userPasswordWrong = true
+        console.log(this.userData, this.userPasswordWrong)
+      },
+
+      getUserError(error) {
+        console.log(error)
       }
-        
     }
     
   }
