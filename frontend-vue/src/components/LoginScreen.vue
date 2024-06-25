@@ -18,7 +18,7 @@
         <FloatLabel>
           <Password v-model="passwordValue" inputId="password" :feedback="false"/>
           <label for="password">{{ t("login.password") }}</label>
-          <small style="color: red">{{  t("login.wrongCredentials") }}</small>
+          <small v-show="userPasswordWrong"  style="color: red">{{  t("login.wrongCredentials") }}</small>
         </FloatLabel>
       </template>
       <template #footer>
@@ -77,6 +77,7 @@
 
     methods: {
       async validaterUserBackend() {
+        this.userPasswordWrong = false
         await fetch("http://localhost:8090/user", {
           method: "POST",
           headers: {"Content-Type": "application/json",},
